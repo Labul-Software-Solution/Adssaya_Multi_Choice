@@ -1,16 +1,16 @@
 {
-  "version": 2,
-  "name": "AdssayaMultiChoice",
-  "builds": [
-    {
-      "src": "backend/index.js",
-      "use": "@vercel/node"
-    }
-  ],
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "backend/index.js"
-    }
-  ]
+    "version" : 2,
+    "name" : "AdssayaMultiChoice",
+    "builds" : [
+        {
+            "src" : "./index.js",
+            "use" : "@vercel/node"
+        }
+    ],
+    "routes" : [
+        {
+            "src" : "/(.*)",
+            "dest" : "/"
+        }
+    ]
 }
