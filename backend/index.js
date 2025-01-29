@@ -17,7 +17,8 @@ import orderRouter from './route/order.route.js';
 dotenv.config();
 
 const app = express();
-
+console.log("RESEND_API:", process.env.RESEND_API);
+console.log("MONGODB_URI:", process.env.MONGODB_URI);
 // Middleware
 app.use(cors({
     credentials: true,
