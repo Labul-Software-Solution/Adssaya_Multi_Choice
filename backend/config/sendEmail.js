@@ -4,13 +4,17 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 if (!process.env.Resend_API) {
-    console.log("Provide RESEND_API inside the .env file");
-    process.exit(1); // Exit if the API key is not provided
+    console.warn("Warning: RESEND_API key not found in the .env file. Email functionality will not work.");
 }
 
-const resend = new Resend(process.env.Resend_API);
+const resend = process.env.Resend_API ? new Resend(process.env.Resend_API) : null;
 
 const sendEmail = async ({ sendTo, subject, html }) => {
+    if (!resend) {
+        console.warn("Email sending skipped: RESEND_API key is missing.");
+        return { status: "error", message: "RESEND_API key is missing." }; // Return a friendly response or handle it as needed
+    }
+
     try {
         const data = await resend.emails.send({
             from: 'onlineshop <onboarding@resend.dev>',
